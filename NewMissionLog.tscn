@@ -1,0 +1,192 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://fonts/LogBigBody.tres" type="DynamicFont" id=1]
+[ext_resource path="res://fonts/LogTitle.tres" type="DynamicFont" id=2]
+[ext_resource path="res://fonts/LogHeader.tres" type="DynamicFont" id=3]
+[ext_resource path="res://fonts/LogSubHeader.tres" type="DynamicFont" id=4]
+[ext_resource path="res://fonts/LogBody.tres" type="DynamicFont" id=5]
+[ext_resource path="res://res/MissionLogIcon.png" type="Texture" id=6]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.6, 0.117647, 0.164706, 1 )
+
+[sub_resource type="Shader" id=2]
+code = "shader_type canvas_item;
+
+void fragment(){
+	if (UV.x > UV.y){
+		COLOR.a = 0.0;
+	}
+}"
+
+[sub_resource type="ShaderMaterial" id=3]
+shader = SubResource( 2 )
+
+[sub_resource type="StyleBoxFlat" id=4]
+bg_color = Color( 0.6, 0.117647, 0.164706, 1 )
+
+[sub_resource type="StyleBoxFlat" id=5]
+bg_color = Color( 1, 1, 1, 1 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0.6, 0.117647, 0.164706, 1 )
+
+[node name="MarginContainer" type="MarginContainer"]
+margin_right = 400.0
+margin_bottom = 447.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_right = 400.0
+margin_bottom = 447.0
+custom_constants/separation = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+margin_right = 400.0
+margin_bottom = 70.0
+rect_min_size = Vector2( 400, 70 )
+size_flags_horizontal = 3
+custom_constants/separation = 0
+
+[node name="RedPanel" type="Panel" parent="VBoxContainer/HBoxContainer"]
+margin_right = 330.0
+margin_bottom = 70.0
+size_flags_horizontal = 3
+custom_styles/panel = SubResource( 1 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/RedPanel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/separation = 19
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Container" type="Container" parent="VBoxContainer/HBoxContainer/RedPanel/HBoxContainer"]
+margin_bottom = 70.0
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/HBoxContainer/RedPanel/HBoxContainer"]
+margin_left = 19.0
+margin_right = 87.0
+margin_bottom = 70.0
+texture = ExtResource( 6 )
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/RedPanel/HBoxContainer"]
+margin_left = 106.0
+margin_top = 8.0
+margin_right = 310.0
+margin_bottom = 62.0
+custom_fonts/font = ExtResource( 3 )
+text = "MISSION LOG"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TrianglePiece" type="Panel" parent="VBoxContainer/HBoxContainer"]
+material = SubResource( 3 )
+margin_left = 330.0
+margin_right = 400.0
+margin_bottom = 70.0
+rect_min_size = Vector2( 70, 70 )
+custom_styles/panel = SubResource( 4 )
+
+[node name="WhitePanel" type="PanelContainer" parent="VBoxContainer"]
+margin_top = 70.0
+margin_right = 400.0
+margin_bottom = 447.0
+size_flags_vertical = 3
+custom_styles/panel = SubResource( 5 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/WhitePanel"]
+margin_left = 1.0
+margin_top = 1.0
+margin_right = 399.0
+margin_bottom = 376.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CurrentAssignment" type="Label" parent="VBoxContainer/WhitePanel/VBoxContainer"]
+margin_right = 398.0
+margin_bottom = 46.0
+custom_fonts/font = ExtResource( 4 )
+custom_colors/font_color = Color( 0.6, 0.117647, 0.164706, 1 )
+text = "CURRENT ASSIGNMENT"
+
+[node name="Mission" type="Label" parent="VBoxContainer/WhitePanel/VBoxContainer"]
+margin_top = 50.0
+margin_right = 398.0
+margin_bottom = 69.0
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0.584314, 0.584314, 0.584314, 1 )
+text = "MISSION // #001"
+
+[node name="MissionBody" type="Label" parent="VBoxContainer/WhitePanel/VBoxContainer"]
+margin_top = 73.0
+margin_right = 398.0
+margin_bottom = 99.0
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_constants/line_spacing = -10
+text = "[INSERT INFO HERE]"
+autowrap = true
+
+[node name="Goals" type="Label" parent="VBoxContainer/WhitePanel/VBoxContainer"]
+margin_top = 103.0
+margin_right = 398.0
+margin_bottom = 122.0
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0.584314, 0.584314, 0.584314, 1 )
+text = "GOALS"
+
+[node name="GoalsBody" type="Label" parent="VBoxContainer/WhitePanel/VBoxContainer"]
+margin_top = 126.0
+margin_right = 398.0
+margin_bottom = 175.0
+custom_fonts/font = ExtResource( 5 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = ">>> [Insert info here]
+>>> [Insert info here]"
+autowrap = true
+
+[node name="Stakes" type="Label" parent="VBoxContainer/WhitePanel/VBoxContainer"]
+margin_top = 179.0
+margin_right = 398.0
+margin_bottom = 198.0
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0.584314, 0.584314, 0.584314, 1 )
+text = "STAKES"
+
+[node name="StakesBody" type="Label" parent="VBoxContainer/WhitePanel/VBoxContainer"]
+margin_top = 202.0
+margin_right = 398.0
+margin_bottom = 251.0
+custom_fonts/font = ExtResource( 5 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = ">>> [Insert info here]
+>>> [Insert info here]"
+autowrap = true
+
+[node name="Reserves" type="Label" parent="VBoxContainer/WhitePanel/VBoxContainer"]
+margin_top = 255.0
+margin_right = 398.0
+margin_bottom = 274.0
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0.584314, 0.584314, 0.584314, 1 )
+text = "RESERVES"
+
+[node name="ReservesBody" type="Label" parent="VBoxContainer/WhitePanel/VBoxContainer"]
+margin_top = 278.0
+margin_right = 398.0
+margin_bottom = 327.0
+custom_fonts/font = ExtResource( 5 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = ">>> [Insert info here]
+>>> [Insert info here]"
+autowrap = true

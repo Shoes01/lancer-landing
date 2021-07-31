@@ -1,0 +1,109 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://fonts/LogHeader.tres" type="DynamicFont" id=1]
+[ext_resource path="res://res/PilotRosterIcon.png" type="Texture" id=2]
+[ext_resource path="res://PilotEntries.gd" type="Script" id=4]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.6, 0.117647, 0.164706, 1 )
+
+[sub_resource type="Shader" id=2]
+code = "shader_type canvas_item;
+
+void fragment(){
+	if (UV.x > UV.y){
+		COLOR.a = 0.0;
+	}
+}"
+
+[sub_resource type="ShaderMaterial" id=3]
+shader = SubResource( 2 )
+
+[sub_resource type="StyleBoxFlat" id=4]
+bg_color = Color( 0.6, 0.117647, 0.164706, 1 )
+
+[sub_resource type="StyleBoxFlat" id=5]
+bg_color = Color( 1, 1, 1, 1 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0.6, 0.117647, 0.164706, 1 )
+
+[node name="PilotRoster" type="VBoxContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/separation = 0
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TopBar" type="HBoxContainer" parent="."]
+margin_right = 1366.0
+margin_bottom = 70.0
+rect_min_size = Vector2( 0, 70 )
+custom_constants/separation = 0
+
+[node name="RedRectangle" type="Panel" parent="TopBar"]
+margin_right = 1296.0
+margin_bottom = 70.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_styles/panel = SubResource( 1 )
+
+[node name="TitleData" type="HBoxContainer" parent="TopBar/RedRectangle"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/separation = 15
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Container" type="Container" parent="TopBar/RedRectangle/TitleData"]
+margin_bottom = 70.0
+
+[node name="Image" type="TextureRect" parent="TopBar/RedRectangle/TitleData"]
+margin_left = 15.0
+margin_top = 13.0
+margin_right = 53.0
+margin_bottom = 56.0
+size_flags_horizontal = 0
+size_flags_vertical = 4
+texture = ExtResource( 2 )
+
+[node name="TitleBody" type="Label" parent="TopBar/RedRectangle/TitleData"]
+margin_left = 68.0
+margin_top = 8.0
+margin_right = 288.0
+margin_bottom = 62.0
+custom_fonts/font = ExtResource( 1 )
+text = "PILOT ROSTER"
+
+[node name="RedTriangle" type="Panel" parent="TopBar"]
+material = SubResource( 3 )
+margin_left = 1296.0
+margin_right = 1366.0
+margin_bottom = 70.0
+rect_min_size = Vector2( 70, 0 )
+custom_styles/panel = SubResource( 4 )
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+margin_top = 70.0
+margin_right = 1366.0
+margin_bottom = 768.0
+size_flags_vertical = 3
+custom_styles/bg = SubResource( 5 )
+
+[node name="Pilots" type="VBoxContainer" parent="ScrollContainer"]
+margin_left = 1.0
+margin_top = 1.0
+margin_right = 1365.0
+margin_bottom = 697.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/separation = 0
+
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+
+[node name="HTTPRequestImage" type="HTTPRequest" parent="."]

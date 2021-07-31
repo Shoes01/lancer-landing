@@ -1,0 +1,274 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://fonts/LogBigBody.tres" type="DynamicFont" id=1]
+[ext_resource path="res://fonts/LogTitle.tres" type="DynamicFont" id=2]
+[ext_resource path="res://PilotEntry.gd" type="Script" id=3]
+[ext_resource path="res://fonts/LogFineprint.tres" type="DynamicFont" id=5]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 1, 1, 1, 1 )
+border_width_bottom = 1
+border_color = Color( 0.6, 0.117647, 0.164706, 1 )
+
+[node name="PilotEntry" type="PanelContainer"]
+margin_right = 800.0
+margin_bottom = 246.0
+custom_styles/panel = SubResource( 1 )
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Data" type="HBoxContainer" parent="."]
+margin_right = 800.0
+margin_bottom = 245.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="Data"]
+margin_right = 150.0
+margin_bottom = 245.0
+rect_min_size = Vector2( 150, 200 )
+
+[node name="PilotImage" type="TextureRect" parent="Data/CenterContainer"]
+margin_left = 75.0
+margin_top = 122.0
+margin_right = 75.0
+margin_bottom = 122.0
+size_flags_vertical = 8
+
+[node name="PilotData" type="VBoxContainer" parent="Data"]
+margin_left = 154.0
+margin_right = 454.0
+margin_bottom = 245.0
+rect_min_size = Vector2( 300, 0 )
+custom_constants/separation = 0
+alignment = 1
+
+[node name="Callsign" type="Label" parent="Data/PilotData"]
+margin_top = 19.0
+margin_right = 300.0
+margin_bottom = 38.0
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0.584314, 0.584314, 0.584314, 1 )
+text = "   CALLSIGN"
+
+[node name="CallsignBody" type="Label" parent="Data/PilotData"]
+margin_top = 38.0
+margin_right = 300.0
+margin_bottom = 64.0
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "   [EDIT HERE]"
+
+[node name="Name" type="Label" parent="Data/PilotData"]
+margin_top = 64.0
+margin_right = 300.0
+margin_bottom = 83.0
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0.584314, 0.584314, 0.584314, 1 )
+text = "   NAME OR LEGAL ALIAS"
+
+[node name="NameBody" type="Label" parent="Data/PilotData"]
+margin_top = 83.0
+margin_right = 300.0
+margin_bottom = 109.0
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "   [EDIT HERE]"
+
+[node name="Level" type="Label" parent="Data/PilotData"]
+margin_top = 109.0
+margin_right = 300.0
+margin_bottom = 123.0
+
+[node name="TickerBox" type="VBoxContainer" parent="Data/PilotData"]
+margin_top = 123.0
+margin_right = 300.0
+margin_bottom = 187.0
+custom_constants/separation = 0
+
+[node name="LineTop" type="Label" parent="Data/PilotData/TickerBox"]
+margin_right = 300.0
+margin_bottom = 16.0
+custom_fonts/font = ExtResource( 5 )
+custom_colors/font_color = Color( 0.588235, 0.588235, 0.588235, 1 )
+text = "   >"
+
+[node name="LineMiddle" type="Label" parent="Data/PilotData/TickerBox"]
+margin_top = 16.0
+margin_right = 300.0
+margin_bottom = 32.0
+custom_fonts/font = ExtResource( 5 )
+custom_colors/font_color = Color( 0.588235, 0.588235, 0.588235, 1 )
+text = "   >"
+
+[node name="LineBottom" type="Label" parent="Data/PilotData/TickerBox"]
+margin_top = 32.0
+margin_right = 300.0
+margin_bottom = 48.0
+custom_fonts/font = ExtResource( 5 )
+custom_colors/font_color = Color( 0.588235, 0.588235, 0.588235, 1 )
+text = "   >"
+
+[node name="Ticker" type="Label" parent="Data/PilotData/TickerBox"]
+margin_top = 48.0
+margin_right = 300.0
+margin_bottom = 64.0
+custom_fonts/font = ExtResource( 5 )
+custom_colors/font_color = Color( 0.588235, 0.588235, 0.588235, 1 )
+text = "   >"
+
+[node name="PilotData" type="Button" parent="Data/PilotData"]
+margin_top = 187.0
+margin_right = 300.0
+margin_bottom = 209.0
+size_flags_vertical = 4
+custom_fonts/font = ExtResource( 5 )
+custom_colors/font_color = Color( 0.584314, 0.584314, 0.584314, 1 )
+text = "COMP/CON LINK"
+flat = true
+align = 0
+
+[node name="LastSync" type="Label" parent="Data/PilotData"]
+margin_top = 209.0
+margin_right = 300.0
+margin_bottom = 225.0
+custom_fonts/font = ExtResource( 5 )
+custom_colors/font_color = Color( 0.588235, 0.588235, 0.588235, 1 )
+text = "   LAST SYNC"
+
+[node name="MechData" type="VBoxContainer" parent="Data"]
+margin_left = 458.0
+margin_right = 573.0
+margin_bottom = 245.0
+custom_constants/separation = 0
+
+[node name="Mech" type="Label" parent="Data/MechData"]
+margin_right = 115.0
+margin_bottom = 19.0
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0.584314, 0.584314, 0.584314, 1 )
+text = "[CORPRO] // [FRAME]"
+
+[node name="MechBody" type="Label" parent="Data/MechData"]
+margin_top = 19.0
+margin_right = 115.0
+margin_bottom = 45.0
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "[EDIT HERE]"
+
+[node name="CenterContainer" type="CenterContainer" parent="Data/MechData"]
+margin_top = 45.0
+margin_right = 115.0
+margin_bottom = 150.0
+rect_min_size = Vector2( 105, 105 )
+
+[node name="MechImage" type="TextureRect" parent="Data/MechData/CenterContainer"]
+margin_left = 57.0
+margin_top = 52.0
+margin_right = 57.0
+margin_bottom = 52.0
+
+[node name="MechTickerBox" type="VBoxContainer" parent="Data"]
+margin_left = 577.0
+margin_right = 583.0
+margin_bottom = 245.0
+size_flags_vertical = 9
+custom_constants/separation = 0
+
+[node name="Container" type="Container" parent="Data/MechTickerBox"]
+margin_right = 6.0
+margin_bottom = 85.0
+size_flags_vertical = 3
+
+[node name="Line0" type="Label" parent="Data/MechTickerBox"]
+margin_top = 85.0
+margin_right = 6.0
+margin_bottom = 101.0
+custom_fonts/font = ExtResource( 5 )
+custom_colors/font_color = Color( 0.588235, 0.588235, 0.588235, 1 )
+text = ">"
+
+[node name="Line1" type="Label" parent="Data/MechTickerBox"]
+margin_top = 101.0
+margin_right = 6.0
+margin_bottom = 117.0
+custom_fonts/font = ExtResource( 5 )
+custom_colors/font_color = Color( 0.588235, 0.588235, 0.588235, 1 )
+text = ">"
+
+[node name="Line2" type="Label" parent="Data/MechTickerBox"]
+margin_top = 117.0
+margin_right = 6.0
+margin_bottom = 133.0
+custom_fonts/font = ExtResource( 5 )
+custom_colors/font_color = Color( 0.588235, 0.588235, 0.588235, 1 )
+text = ">"
+
+[node name="Line3" type="Label" parent="Data/MechTickerBox"]
+margin_top = 133.0
+margin_right = 6.0
+margin_bottom = 149.0
+custom_fonts/font = ExtResource( 5 )
+custom_colors/font_color = Color( 0.588235, 0.588235, 0.588235, 1 )
+text = ">"
+
+[node name="Line4" type="Label" parent="Data/MechTickerBox"]
+margin_top = 149.0
+margin_right = 6.0
+margin_bottom = 165.0
+custom_fonts/font = ExtResource( 5 )
+custom_colors/font_color = Color( 0.588235, 0.588235, 0.588235, 1 )
+text = ">"
+
+[node name="Line5" type="Label" parent="Data/MechTickerBox"]
+margin_top = 165.0
+margin_right = 6.0
+margin_bottom = 181.0
+custom_fonts/font = ExtResource( 5 )
+custom_colors/font_color = Color( 0.588235, 0.588235, 0.588235, 1 )
+text = ">"
+
+[node name="Line6" type="Label" parent="Data/MechTickerBox"]
+margin_top = 181.0
+margin_right = 6.0
+margin_bottom = 197.0
+custom_fonts/font = ExtResource( 5 )
+custom_colors/font_color = Color( 0.588235, 0.588235, 0.588235, 1 )
+text = ">"
+
+[node name="Line7" type="Label" parent="Data/MechTickerBox"]
+margin_top = 197.0
+margin_right = 6.0
+margin_bottom = 213.0
+custom_fonts/font = ExtResource( 5 )
+custom_colors/font_color = Color( 0.588235, 0.588235, 0.588235, 1 )
+text = ">"
+
+[node name="Line8" type="Label" parent="Data/MechTickerBox"]
+margin_top = 213.0
+margin_right = 6.0
+margin_bottom = 229.0
+custom_fonts/font = ExtResource( 5 )
+custom_colors/font_color = Color( 0.588235, 0.588235, 0.588235, 1 )
+text = ">"
+
+[node name="Ticker" type="Label" parent="Data/MechTickerBox"]
+margin_top = 229.0
+margin_right = 6.0
+margin_bottom = 245.0
+custom_fonts/font = ExtResource( 5 )
+custom_colors/font_color = Color( 0.588235, 0.588235, 0.588235, 1 )
+text = ">"
+valign = 2
+
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+
+[node name="HTTPRequestImage" type="HTTPRequest" parent="."]
+
+[node name="HTTPRequestMech" type="HTTPRequest" parent="."]
+
+[connection signal="pressed" from="Data/PilotData/PilotData" to="." method="_on_PilotData_pressed"]

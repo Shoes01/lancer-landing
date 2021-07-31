@@ -1,0 +1,336 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://NewMissionLog.tscn" type="PackedScene" id=1]
+[ext_resource path="res://fonts/LogBigBody.tres" type="DynamicFont" id=2]
+[ext_resource path="res://fonts/LogTitle.tres" type="DynamicFont" id=3]
+[ext_resource path="res://Planet.tscn" type="PackedScene" id=4]
+[ext_resource path="res://fonts/LogHeader.tres" type="DynamicFont" id=5]
+[ext_resource path="res://fonts/LogBody.tres" type="DynamicFont" id=6]
+[ext_resource path="res://Main.gd" type="Script" id=7]
+[ext_resource path="res://PilotEntries.tscn" type="PackedScene" id=8]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 1, 1, 1, 1 )
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0.6, 0.117647, 0.164706, 1 )
+
+[sub_resource type="StyleBoxLine" id=3]
+color = Color( 1, 1, 1, 1 )
+
+[sub_resource type="Shader" id=4]
+code = "shader_type canvas_item;
+
+void fragment(){
+	if (UV.x > (1.0 - UV.y) ){
+		COLOR.a = 0.0;
+	}
+}"
+
+[sub_resource type="ShaderMaterial" id=5]
+shader = SubResource( 4 )
+
+[sub_resource type="StyleBoxFlat" id=6]
+bg_color = Color( 0.6, 0.117647, 0.164706, 1 )
+
+[sub_resource type="StyleBoxLine" id=7]
+color = Color( 0.584314, 0.584314, 0.584314, 1 )
+vertical = true
+
+[node name="Panel" type="Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_styles/panel = SubResource( 1 )
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TopBar" type="HBoxContainer" parent="VBoxContainer"]
+margin_right = 1366.0
+margin_bottom = 102.0
+custom_constants/separation = 0
+
+[node name="BigRedPanel" type="Panel" parent="VBoxContainer/TopBar"]
+margin_right = 723.0
+margin_bottom = 102.0
+rect_min_size = Vector2( 0, 100 )
+size_flags_horizontal = 3
+custom_styles/panel = SubResource( 2 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/TopBar/BigRedPanel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/TopBar/BigRedPanel/HBoxContainer"]
+margin_top = 29.0
+margin_right = 50.0
+margin_bottom = 73.0
+rect_min_size = Vector2( 50, 0 )
+size_flags_vertical = 6
+
+[node name="Button" type="Button" parent="VBoxContainer/TopBar/BigRedPanel/HBoxContainer/VBoxContainer2"]
+margin_right = 50.0
+margin_bottom = 20.0
+text = ">\\\\"
+flat = true
+
+[node name="Button2" type="Button" parent="VBoxContainer/TopBar/BigRedPanel/HBoxContainer/VBoxContainer2"]
+margin_top = 24.0
+margin_right = 50.0
+margin_bottom = 44.0
+text = "I/O"
+flat = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TopBar/BigRedPanel/HBoxContainer"]
+margin_left = 54.0
+margin_right = 329.0
+margin_bottom = 102.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Department" type="Label" parent="VBoxContainer/TopBar/BigRedPanel/HBoxContainer/VBoxContainer"]
+margin_right = 275.0
+margin_bottom = 54.0
+custom_fonts/font = ExtResource( 5 )
+text = "SPACE JEDI"
+align = 1
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer/TopBar/BigRedPanel/HBoxContainer/VBoxContainer"]
+margin_top = 58.0
+margin_right = 275.0
+margin_bottom = 62.0
+custom_styles/separator = SubResource( 3 )
+
+[node name="SubDepartment" type="Label" parent="VBoxContainer/TopBar/BigRedPanel/HBoxContainer/VBoxContainer"]
+margin_top = 66.0
+margin_right = 275.0
+margin_bottom = 89.0
+custom_fonts/font = ExtResource( 6 )
+text = "FORWARD DETACHMENT // HIGH ROLLERS"
+align = 1
+
+[node name="BigRedDecoration" type="Panel" parent="VBoxContainer/TopBar"]
+material = SubResource( 5 )
+margin_left = 723.0
+margin_right = 823.0
+margin_bottom = 102.0
+rect_min_size = Vector2( 100, 0 )
+custom_styles/panel = SubResource( 6 )
+
+[node name="Planet" type="Container" parent="VBoxContainer/TopBar"]
+margin_left = 823.0
+margin_right = 923.0
+margin_bottom = 102.0
+rect_min_size = Vector2( 100, 0 )
+
+[node name="Planet" parent="VBoxContainer/TopBar/Planet" instance=ExtResource( 4 )]
+
+[node name="Container" type="Container" parent="VBoxContainer/TopBar"]
+margin_left = 923.0
+margin_right = 933.0
+margin_bottom = 102.0
+rect_min_size = Vector2( 10, 0 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TopBar"]
+margin_left = 933.0
+margin_right = 1356.0
+margin_bottom = 102.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/TopBar/VBoxContainer"]
+margin_right = 423.0
+margin_bottom = 49.0
+custom_constants/separation = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TopBar/VBoxContainer/HBoxContainer"]
+margin_right = 353.0
+margin_bottom = 49.0
+size_flags_horizontal = 3
+
+[node name="DeploymentInfo" type="Label" parent="VBoxContainer/TopBar/VBoxContainer/HBoxContainer/VBoxContainer"]
+margin_right = 353.0
+margin_bottom = 19.0
+custom_fonts/font = ExtResource( 3 )
+custom_colors/font_color = Color( 0.584314, 0.584314, 0.584314, 1 )
+text = "DEPLOYMENT INFO"
+
+[node name="DeploymentBody" type="Label" parent="VBoxContainer/TopBar/VBoxContainer/HBoxContainer/VBoxContainer"]
+margin_top = 23.0
+margin_right = 353.0
+margin_bottom = 49.0
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "HA/DS 1"
+
+[node name="VSeparator" type="VSeparator" parent="VBoxContainer/TopBar/VBoxContainer/HBoxContainer"]
+margin_left = 363.0
+margin_right = 367.0
+margin_bottom = 49.0
+custom_styles/separator = SubResource( 7 )
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/TopBar/VBoxContainer/HBoxContainer"]
+margin_left = 377.0
+margin_right = 423.0
+margin_bottom = 49.0
+alignment = 2
+
+[node name="Year" type="Label" parent="VBoxContainer/TopBar/VBoxContainer/HBoxContainer/VBoxContainer2"]
+margin_right = 46.0
+margin_bottom = 19.0
+custom_fonts/font = ExtResource( 3 )
+custom_colors/font_color = Color( 0.584314, 0.584314, 0.584314, 1 )
+text = "YEAR"
+
+[node name="YearBody" type="Label" parent="VBoxContainer/TopBar/VBoxContainer/HBoxContainer/VBoxContainer2"]
+margin_top = 23.0
+margin_right = 46.0
+margin_bottom = 49.0
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "5016U"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/TopBar/VBoxContainer"]
+margin_top = 53.0
+margin_right = 423.0
+margin_bottom = 102.0
+custom_constants/separation = 10
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/TopBar/VBoxContainer/HBoxContainer2"]
+margin_right = 132.0
+margin_bottom = 49.0
+
+[node name="System" type="Label" parent="VBoxContainer/TopBar/VBoxContainer/HBoxContainer2/VBoxContainer2"]
+margin_right = 132.0
+margin_bottom = 19.0
+custom_fonts/font = ExtResource( 3 )
+custom_colors/font_color = Color( 0.584314, 0.584314, 0.584314, 1 )
+text = "SYSTEM"
+
+[node name="SystemBody" type="Label" parent="VBoxContainer/TopBar/VBoxContainer/HBoxContainer2/VBoxContainer2"]
+margin_top = 23.0
+margin_right = 132.0
+margin_bottom = 49.0
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "DAWN SHORELINE"
+
+[node name="VSeparator2" type="VSeparator" parent="VBoxContainer/TopBar/VBoxContainer/HBoxContainer2"]
+margin_left = 142.0
+margin_right = 146.0
+margin_bottom = 49.0
+custom_styles/separator = SubResource( 7 )
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="VBoxContainer/TopBar/VBoxContainer/HBoxContainer2"]
+margin_left = 156.0
+margin_right = 303.0
+margin_bottom = 49.0
+
+[node name="Gate" type="Label" parent="VBoxContainer/TopBar/VBoxContainer/HBoxContainer2/VBoxContainer3"]
+margin_right = 147.0
+margin_bottom = 19.0
+custom_fonts/font = ExtResource( 3 )
+custom_colors/font_color = Color( 0.584314, 0.584314, 0.584314, 1 )
+text = "GATE"
+
+[node name="GateBody" type="Label" parent="VBoxContainer/TopBar/VBoxContainer/HBoxContainer2/VBoxContainer3"]
+margin_top = 23.0
+margin_right = 147.0
+margin_bottom = 49.0
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "ARKA TAGH STATION"
+
+[node name="VSeparator3" type="VSeparator" parent="VBoxContainer/TopBar/VBoxContainer/HBoxContainer2"]
+margin_left = 313.0
+margin_right = 317.0
+margin_bottom = 49.0
+custom_styles/separator = SubResource( 7 )
+
+[node name="VBoxContainer4" type="VBoxContainer" parent="VBoxContainer/TopBar/VBoxContainer/HBoxContainer2"]
+margin_left = 327.0
+margin_right = 423.0
+margin_bottom = 49.0
+
+[node name="Ring" type="Label" parent="VBoxContainer/TopBar/VBoxContainer/HBoxContainer2/VBoxContainer4"]
+margin_right = 96.0
+margin_bottom = 19.0
+custom_fonts/font = ExtResource( 3 )
+custom_colors/font_color = Color( 0.584314, 0.584314, 0.584314, 1 )
+text = "RING"
+
+[node name="RingBody" type="Label" parent="VBoxContainer/TopBar/VBoxContainer/HBoxContainer2/VBoxContainer4"]
+margin_top = 23.0
+margin_right = 96.0
+margin_bottom = 49.0
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "KUNLUN LINE"
+
+[node name="Container2" type="Container" parent="VBoxContainer/TopBar"]
+margin_left = 1356.0
+margin_right = 1366.0
+margin_bottom = 102.0
+rect_min_size = Vector2( 10, 0 )
+
+[node name="Container2" type="Container" parent="VBoxContainer"]
+margin_top = 106.0
+margin_right = 1366.0
+margin_bottom = 116.0
+rect_min_size = Vector2( 0, 10 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 120.0
+margin_right = 1366.0
+margin_bottom = 754.0
+size_flags_vertical = 3
+
+[node name="Container" type="Container" parent="VBoxContainer/HBoxContainer"]
+margin_right = 10.0
+margin_bottom = 634.0
+rect_min_size = Vector2( 10, 0 )
+
+[node name="MissionLog" parent="VBoxContainer/HBoxContainer" instance=ExtResource( 1 )]
+margin_left = 14.0
+margin_right = 414.0
+margin_bottom = 634.0
+size_flags_vertical = 3
+
+[node name="Container2" type="Container" parent="VBoxContainer/HBoxContainer"]
+margin_left = 418.0
+margin_right = 428.0
+margin_bottom = 634.0
+rect_min_size = Vector2( 10, 0 )
+
+[node name="PilotRoster" parent="VBoxContainer/HBoxContainer" instance=ExtResource( 8 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 432.0
+margin_right = 1352.0
+margin_bottom = 634.0
+size_flags_horizontal = 3
+
+[node name="Container3" type="Container" parent="VBoxContainer/HBoxContainer"]
+margin_left = 1356.0
+margin_right = 1366.0
+margin_bottom = 634.0
+rect_min_size = Vector2( 10, 0 )
+
+[node name="Container" type="Container" parent="VBoxContainer"]
+margin_top = 758.0
+margin_right = 1366.0
+margin_bottom = 768.0
+rect_min_size = Vector2( 0, 10 )
+
+[connection signal="pressed" from="VBoxContainer/TopBar/BigRedPanel/HBoxContainer/VBoxContainer2/Button" to="." method="_on_Button_pressed"]
+[connection signal="pressed" from="VBoxContainer/TopBar/BigRedPanel/HBoxContainer/VBoxContainer2/Button2" to="." method="_on_Button2_pressed"]
